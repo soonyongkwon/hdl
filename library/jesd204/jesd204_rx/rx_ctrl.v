@@ -43,12 +43,14 @@
 //
 
 module jesd204_rx_ctrl #(
-  parameter NUM_LANES = 1
+  parameter NUM_LANES = 1,
+  parameter NUM_LINKS = 1
 ) (
   input clk,
   input reset,
 
   input [NUM_LANES-1:0] cfg_lanes_disable,
+  input [NUM_LINKS-1:0] cfg_links_disable,
 
   input phy_ready,
 
@@ -61,7 +63,7 @@ module jesd204_rx_ctrl #(
 
   input lmfc_edge,
 
-  output sync,
+  output [NUM_LINKS-1:0] sync,
   output reg latency_monitor_reset,
 
   output reg [1:0] status_state
